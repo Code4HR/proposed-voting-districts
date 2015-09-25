@@ -4,76 +4,72 @@
   <title>Redistrict VA</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-  <script src="src/jquery-2.1.4.min.js"></script>
   <script src="src/leaflet.ajax.min.js"></script>
 </head>
-  <style>
-    #map {
-      height: 90%
-    }
+<style>
+  #map {
+    height: 90%
+  }
 
-    body {
-      background-color: #26ADE4;
-    }
-
-  </style>
+  body {
+    background-color: #26ADE4;
+  }
+</style>
 </head>
 
 <body>
   <div id="map"></div>
   <script>
+    var govenorStyle = {
+      color: "#2262CC",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#2262CC"
+    };
 
-//  $.getJSON("scf.geojson", function(data) {
-      // add GeoJSON layer to the map once the file is loaded
-//      var scf = L.geoJson(data,{
-  //      pointToLayer: function(feature, latlng) {
-    //      var marker = L.marker(latlng, {});
-      //    marker.bindPopup(feature.properties.summary + '<br/>' + feature.properties.description);
-        //  return marker;
-        //}
-      //});
 
-    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson"),
-        intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
-        intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
-        naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
-        plantiff = new L.GeoJSON.AJAX("data/plantiff.geojson"),
-        rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson");
+    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {style: govenorStyle}),
+      intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
+      intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
+      naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
+      plantiff = new L.GeoJSON.AJAX("data/plantiff.geojson"),
+      rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson");
 
-        var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-    	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    	subdomains: 'abcd',
-    	maxZoom: 19
-    }),
+
+    var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }),
 
       CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    	subdomains: 'abcd',
-    	maxZoom: 19
-    });
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      });
 
     var map = L.map('map', {
-    center: [37.040, -76.386],
-    zoom: 10,
-    layers: [CartoDB_DarkMatter, govenor]
-});
+      center: [37.040, -76.386],
+      zoom: 10,
+      layers: [CartoDB_DarkMatter, govenor]
+    });
 
-var baseMaps = {
-    "CartoDB Dark": CartoDB_DarkMatter,
-    "CartoDB Positron": CartoDB_Positron
-};
+    var baseMaps = {
+      "CartoDB Dark": CartoDB_DarkMatter,
+      "CartoDB Positron": CartoDB_Positron
+    };
 
-var overlayMaps = {
-    "Govenors": govenor,
-    "Intervenors 1": intervenors1,
-    "Intervenors 1": intervenors2,
-    "NAACP": naacp,
-    "Plantiff": plantiff,
-    "Rappaport": rappaport
-};
+    var overlayMaps = {
+      "Govenors": govenor,
+      "Intervenors 1": intervenors1,
+      "Intervenors 1": intervenors2,
+      "NAACP": naacp,
+      "Plantiff": plantiff,
+      "Rappaport": rappaport
+    };
 
-L.control.layers(baseMaps, overlayMaps).addTo(map);
-
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
   </script>
   <a href="https://github.com/Code4HR/proposed-voting-districts">
     <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67"
