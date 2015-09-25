@@ -7,4 +7,8 @@ This open-source web application allows Virginians to browse the submissions tha
 Current Congressional Districts [(Source)](http://redistricting.dls.virginia.gov/2010/RedistrictingPlans.aspx#31)  
 Submitted Congressional Districts [(Source)](http://redistricting.dls.virginia.gov/2010/court-ordered-redistricting.aspx)
 
-
+##todo
+* add leaflet locate me  
+* fix pop-ups  
+* better ui (leaflet sidebar?)  
+* what else what else  
