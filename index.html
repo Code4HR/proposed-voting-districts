@@ -19,6 +19,22 @@
 </head>
 
 <body>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+  <style>
+    .leaflet-control-locate {
+      border: 1px solid rgba(0, 0, 0, 0.4);
+    }
+
+    .leaflet-control-locate a {
+      background-color: #fff;
+      background-position: -3px, -2px;
+    }
+
+    .leaflet-control-locate.active a {
+      background-position: -33px -2px;
+    }
+  </style>
   <div id="map"></div>
   <script>
     var existingStyle = {
@@ -37,15 +53,15 @@
       fillColor: "#D1E751"
     };
 
+    function popUp(feature, layer) {
+      layer.bindPopup(feature.properties.name);
+    }
 
     var existing = new L.GeoJSON.AJAX("data/existing.geojson", {
-          style: existingStyle
-        },
-        {
-          onEachFeature: function(feature, layer) {
-          layer.bindPopup(feature.properties.DISTRICT);
-        }
-        }),
+        style: existingStyle
+      }, {
+        onEachFeature: popUp
+      }),
       govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {
         style: govenorStyle
       }),
@@ -71,8 +87,10 @@
     var map = L.map('map', {
       center: [37.2478, -77.9260],
       zoom: 8,
-      layers: [CartoDB_DarkMatter, existing]
+      layers: [CartoDB_DarkMatter, ]
     });
+
+    L.control.locate().addTo(map);
 
     var baseMaps = {
       "CartoDB Dark": CartoDB_DarkMatter,
@@ -80,10 +98,10 @@
     };
 
     var overlayMaps = {
-      "Existing": existing,
+      /*"Existing": existing,*/
       "Govenors": govenor,
       "Intervenors 1": intervenors1,
-      "Intervenors 1": intervenors2,
+      "Intervenors 2": intervenors2,
       "NAACP": naacp,
       "Plantiff": plantiff,
       "Rappaport": rappaport
