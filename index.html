@@ -33,7 +33,7 @@
         layer.bindPopup(feature.properties.DistrictNu);
       }
 
-    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {style: govenorStyle, onEachFeature: popUp),
+    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {style: govenorStyle, onEachFeature: popUp}),
       intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
       intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
       naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
