@@ -21,6 +21,14 @@
 <body>
   <div id="map"></div>
   <script>
+    var existingStyle = {
+      color: "#FFF",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#FFF"
+    };
+
     var govenorStyle = {
       color: "#D1E751",
       weight: 2,
@@ -29,11 +37,16 @@
       fillColor: "#D1E751"
     };
 
-    function popUp(feature, layer) {
-        layer.bindPopup(feature.properties.DistrictNu);
-      }
 
-    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {style: govenorStyle, onEachFeature: popUp}),
+    var existing = new L.GeoJSON.AJAX("data/existing.geojson", {
+          style: existingStyle
+        },
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup(feature.properties.DISTRICT);
+        }),
+      govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {
+        style: govenorStyle
+      }),
       intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
       intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
       naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
@@ -56,7 +69,7 @@
     var map = L.map('map', {
       center: [37.2478, -77.9260],
       zoom: 8,
-      layers: [CartoDB_DarkMatter, govenor]
+      layers: [CartoDB_DarkMatter, existing]
     });
 
     var baseMaps = {
@@ -65,6 +78,7 @@
     };
 
     var overlayMaps = {
+      "Existing": existing,
       "Govenors": govenor,
       "Intervenors 1": intervenors1,
       "Intervenors 1": intervenors2,
