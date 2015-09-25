@@ -41,8 +41,10 @@
     var existing = new L.GeoJSON.AJAX("data/existing.geojson", {
           style: existingStyle
         },
-        onEachFeature: function(feature, layer) {
+        {
+          onEachFeature: function(feature, layer) {
           layer.bindPopup(feature.properties.DISTRICT);
+        }
         }),
       govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {
         style: govenorStyle
