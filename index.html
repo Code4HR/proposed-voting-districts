@@ -33,12 +33,12 @@
         //}
       //});
 
-    var govenor = new L.GeoJSON.AJAX("./govenor.geojson"),
-        intervenors1 = new L.GeoJSON.AJAX("./intervenors-1.geojson"),
-        intervenors2 = new L.GeoJSON.AJAX("./intervenors-2.geojson"),
-        naacp = new L.GeoJSON.AJAX("./naacp.geojson"),
-        plantiff = new L.GeoJSON.AJAX("./plantiff.geojson"),
-        rappaport = new L.GeoJSON.AJAX("./rappaport.geojson");
+    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson"),
+        intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
+        intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
+        naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
+        plantiff = new L.GeoJSON.AJAX("data/plantiff.geojson"),
+        rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson");
 
         var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
