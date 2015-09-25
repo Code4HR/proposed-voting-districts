@@ -41,20 +41,60 @@
       color: "#FFF",
       weight: 2,
       opacity: 0.6,
-      fillOpacity: 0.1,
+      fillOpacity: 0.9,
       fillColor: "#FFF"
     };
 
     var govenorStyle = {
-      color: "#D1E751",
+      color: "#ffffcc",
       weight: 2,
       opacity: 0.6,
       fillOpacity: 0.1,
-      fillColor: "#D1E751"
+      fillColor: "#ffffcc"
+    };
+
+    var intervenors1Style = {
+      color: "#c7e9b4",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#c7e9b4"
+    };
+
+    var intervenors2Style = {
+      color: "#7fcdbb",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#7fcdbb"
+    };
+
+    var naacpStyle = {
+      color: "#41b6c4",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#41b6c4"
+    };
+
+    var plantiffStyle = {
+      color: "#2c7fb8",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#2c7fb8"
+    };
+
+    var rappaportStyle = {
+      color: "#253494",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#253494"
     };
 
     function popUp(feature, layer) {
-      layer.bindPopup(feature.properties.name);
+      layer.bindPopup(feature.properties.DISTRICT);
     }
 
     var existing = new L.GeoJSON.AJAX("data/existing.geojson", {
@@ -65,11 +105,21 @@
       govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {
         style: govenorStyle
       }),
-      intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
-      intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
-      naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
-      plantiff = new L.GeoJSON.AJAX("data/plantiff.geojson"),
-      rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson");
+      intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson", {
+        style: intervenors1Style
+      }),
+      intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson", {
+        style: intervenors2Style
+      }),
+      naacp = new L.GeoJSON.AJAX("data/naacp.geojson", {
+        style: naacpStyle
+      }),
+      plantiff = new L.GeoJSON.AJAX("data/plantiff.geojson", {
+        style: plantiffStyle
+      }),
+      rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson", {
+        style: rappaportStyle
+      }),
 
 
     var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
@@ -78,27 +128,27 @@
         maxZoom: 19
       }),
 
-      CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
+
+
+      Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
       });
 
     var map = L.map('map', {
       center: [37.2478, -77.9260],
       zoom: 8,
-      layers: [CartoDB_DarkMatter, ]
+      layers: [CartoDB_DarkMatter, existing]
     });
 
     L.control.locate().addTo(map);
 
     var baseMaps = {
       "CartoDB Dark": CartoDB_DarkMatter,
-      "CartoDB Positron": CartoDB_Positron
+      "Esri Imagery": Esri_WorldImagery
     };
 
     var overlayMaps = {
-      /*"Existing": existing,*/
+      "Existing": existing,
       "Govenors": govenor,
       "Intervenors 1": intervenors1,
       "Intervenors 2": intervenors2,
