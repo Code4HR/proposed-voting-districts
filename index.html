@@ -13,6 +13,7 @@
 
   body {
     background-color: #26ADE4;
+    color: #fff;
   }
 </style>
 </head>
@@ -21,15 +22,18 @@
   <div id="map"></div>
   <script>
     var govenorStyle = {
-      color: "#2262CC",
+      color: "#D1E751",
       weight: 2,
       opacity: 0.6,
       fillOpacity: 0.1,
-      fillColor: "#2262CC"
+      fillColor: "#D1E751"
     };
 
+    function popUp(feature, layer) {
+        layer.bindPopup(feature.properties.DistrictNu);
+      }
 
-    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {style: govenorStyle}),
+    var govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {style: govenorStyle},{onEachFeature:popUp}),
       intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson"),
       intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson"),
       naacp = new L.GeoJSON.AJAX("data/naacp.geojson"),
@@ -50,8 +54,8 @@
       });
 
     var map = L.map('map', {
-      center: [37.040, -76.386],
-      zoom: 10,
+      center: [37.2478, -77.9260],
+      zoom: 8,
       layers: [CartoDB_DarkMatter, govenor]
     });
 
@@ -69,7 +73,10 @@
       "Rappaport": rappaport
     };
 
-    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed: false,
+      position: 'bottomleft',
+    }).addTo(map);
   </script>
   <a href="https://github.com/Code4HR/proposed-voting-districts">
     <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67"
