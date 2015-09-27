@@ -58,6 +58,38 @@
     .leaflet-control-locate.active a {
       background-position: -33px -2px;
     }
+    .custom-popup .leaflet-popup-content-wrapper {
+      background: rgba(180,180,180, 0.8);
+      padding: 8px 24px;
+      font-family: "Lucida Console", Monaco, monospace;
+      font-size: 12pt;
+      color: #fff;
+      text-shadow: 1px 1px #000;
+      text-align: center;
+      line-height: 18px;
+    }
+    .custom-popup .leaflet-popup-content-wrapper a {
+      color: rgba(255, 255, 255, 0.1);
+    }
+    .custom-popup .leaflet-popup-tip-container {
+      margin: 0 auto;
+      width: 40px;
+      height: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .custom-popup .leaflet-popup-tip {
+      width: 15px;
+      height: 15px;
+      padding: 1px;
+      margin: -8px auto 0;
+      -moz-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+      background: rgba(180,180,180, 0.8);
+    }
   </style>
   <div id="sidebar">
     <h1><b>Mapping the Redistricting of Virginia</b></h1>
@@ -82,17 +114,16 @@ made with &#9829; by
   </div>
   <div id="map"></div>
   <script>
-    var existingStyle = [{
+    var existingStyle = {
       color: "#FFF",
       weight: 2,
       opacity: 0.6,
       fillOpacity: 0.1,
-      fillColor: "#FFF"
-    }, {
+      fillColor: "#FFF",
       "properties": {"DISTRICT": "3"},
       fillOpacity: 0.5,
       fillColor: "#FFF"
-    }];
+    };
 
     var govenorStyle = {
       color: "#ffffcc",
@@ -143,7 +174,7 @@ made with &#9829; by
     };
 
     function popUp(feature, layer) {
-      layer.bindPopup(String(feature.properties.DISTRICT));
+      layer.bindPopup("DISTRICT:" + String(feature.properties.DISTRICT));
     }
 
     var existing = new L.GeoJSON.AJAX("data/existing.geojson", {
