@@ -7,12 +7,11 @@
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="src/L.Control.Sidebar.js"></script>
   <script src="src/leaflet.ajax.min.js"></script>
-</head>
-<style>
-  #map {
-    height: 100%
-  }
-</style>
+  <style>
+    #map {
+        height: 100%
+    }
+  </style>
 </head>
 
 <body>
@@ -139,14 +138,13 @@ made with &#9829; by
     };
 
     function popUp(feature, layer) {
-      layer.bindPopup(feature.properties.DISTRICT);
+      layer.bindPopup(String(feature.properties.DISTRICT));
     }
 
     var existing = new L.GeoJSON.AJAX("data/existing.geojson", {
-        style: existingStyle
-      }, {
+        style: existingStyle,
         onEachFeature: popUp
-      }),
+    }),
       govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {
         style: govenorStyle
       }),
