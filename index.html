@@ -7,11 +7,12 @@
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="src/L.Control.Sidebar.js"></script>
   <script src="src/leaflet.ajax.min.js"></script>
-  <style>
-    #map {
-        height: 100%
-    }
-  </style>
+
+<style>
+  #map {
+    height: 100%
+  }
+</style>
 </head>
 
 <body>
@@ -81,13 +82,17 @@ made with &#9829; by
   </div>
   <div id="map"></div>
   <script>
-    var existingStyle = {
+    var existingStyle = [{
       color: "#FFF",
       weight: 2,
       opacity: 0.6,
       fillOpacity: 0.1,
       fillColor: "#FFF"
-    };
+    }, {
+      "properties": {"DISTRICT": "3"},
+      fillOpacity: 0.5,
+      fillColor: "#FFF"
+    }];
 
     var govenorStyle = {
       color: "#ffffcc",
@@ -146,22 +151,28 @@ made with &#9829; by
         onEachFeature: popUp
     }),
       govenor = new L.GeoJSON.AJAX("data/govenor.geojson", {
-        style: govenorStyle
+        style: govenorStyle,
+        onEachFeature: popUp
       }),
       intervenors1 = new L.GeoJSON.AJAX("data/intervenors-1.geojson", {
-        style: intervenors1Style
+        style: intervenors1Style,
+        onEachFeature: popUp
       }),
       intervenors2 = new L.GeoJSON.AJAX("data/intervenors-2.geojson", {
-        style: intervenors2Style
+        style: intervenors2Style,
+        onEachFeature: popUp
       }),
       naacp = new L.GeoJSON.AJAX("data/naacp.geojson", {
-        style: naacpStyle
+        style: naacpStyle,
+        onEachFeature: popUp
       }),
       plantiff = new L.GeoJSON.AJAX("data/plantiff.geojson", {
-        style: plantiffStyle
+        style: plantiffStyle,
+        onEachFeature: popUp
       }),
       rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson", {
-        style: rappaportStyle
+        style: rappaportStyle,
+        onEachFeature: popUp
       });
 
 
