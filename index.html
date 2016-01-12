@@ -162,12 +162,20 @@ made with &#9829; by
       fillColor: "#2c7fb8"
     };
 
-    var rappaportStyle = {
-      color: "#253494",
+    var currentStyle = {
+      color: "#feb24c",
       weight: 2,
       opacity: 0.6,
       fillOpacity: 0.1,
-      fillColor: "#253494"
+      fillColor: "#feb24c"
+    };
+
+    var naacp6Style = {
+      color: "#f03b20",
+      weight: 2,
+      opacity: 0.6,
+      fillOpacity: 0.1,
+      fillColor: "#f03b20"
     };
 
     function popUp(feature, layer) {
@@ -201,7 +209,15 @@ made with &#9829; by
       rappaport = new L.GeoJSON.AJAX("data/rappaport.geojson", {
         style: rappaportStyle,
         onEachFeature: popUp
-      });
+      }),
+      current_mod = new L.GeoJSON.AJAX("data/current_mod.geojson", {
+          style: currentStyle,
+          onEachFeature: popUp
+        }),
+      naacp_mod = new L.GeoJSON.AJAX("data/naacp_mod.geojson", {
+          style: naacp6Style,
+          onEachFeature: popUp
+        });
 
 
       var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
@@ -245,7 +261,9 @@ made with &#9829; by
       "Intervenors 2": intervenors2,
       "NAACP": naacp,
       "Plantiff": plantiff,
-      "Rappaport": rappaport
+      "Rappaport": rappaport,
+      "Cong. Mod 16": current_mod,
+      "NAACP Mod 6": naacp_mod
     };
 
     L.control.layers(baseMaps, overlayMaps, {
